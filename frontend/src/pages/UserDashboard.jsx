@@ -1,9 +1,10 @@
-import React,{useState,useContext} from 'react'
-import { Link } from "react-router-dom"
+import React,{useState,useContext,useEffect} from 'react'
+import { Link, useNavigate } from "react-router-dom"
 import logo from '../assets/logo.png'
 import Navbar from '../components/Navbar';
 import { AuthContext } from '../context/authcontext'
 import useResume from '../hooks/useResume';
+import { AnalysisContext } from '../context/analysiscontext';
 
 const UserDashboard = () => {
 
@@ -14,14 +15,20 @@ const UserDashboard = () => {
     const toggleMenu = () => {setIsMenuOpen(!isMenuOpen)};
     const [active, setactive] = useState("Optimize")  
     const {loginuser,setloginuser} = useContext(AuthContext)
-    const [resumeupload] = useResume()
+    const {analysis,setAnalysis} = useContext(AnalysisContext)
+    const [resumeupload] = useResume()  
+    const navigate = useNavigate()
+    
+    useEffect(() => {
       setloginuser(true)
-
+    }, [])
+    
 
      const handlesubmit = async(e)=>{
       e.preventDefault()
       const response = await resumeupload({file,selfdescription,jobdescription})
-      console.log(response)
+      navigate('/analysis')
+      setAnalysis(response)
     }
 
 

@@ -108,11 +108,11 @@ Interested in backend architecture and DevOps
 `
 
 const selfdescription=`
-I am a passionate and self-motivated developer who enjoys building real-world applications and continuously learning modern technologies. I have experience working with the MERN stack, backend APIs, authentication systems, and frontend state management.
+    I am a passionate and self-motivated developer who enjoys building real-world applications and continuously learning modern technologies. I have experience working with the MERN stack, backend APIs, authentication systems, and frontend state management.
 
-I enjoy understanding how scalable systems work and improving application performance through optimization techniques. Along with full stack development, I am also exploring DevOps automation, AI integrations, and backend architecture.
+    I enjoy understanding how scalable systems work and improving application performance through optimization techniques. Along with full stack development, I am also exploring DevOps automation, AI integrations, and backend architecture.
 
-I prefer learning through projects and practical implementation rather than only theory. My goal is to become a strong software engineer capable of building scalable and efficient applications that solve real-world problems.
+    I prefer learning through projects and practical implementation rather than only theory. My goal is to become a strong software engineer capable of building scalable and efficient applications that solve real-world problems.
 `
 
 const jobdescription = `

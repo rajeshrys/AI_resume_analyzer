@@ -23,7 +23,8 @@ const Navbar = () => {
     { name: "Optimize", path: "/userdashboard" },
     { name: "Resumes", path: "/resumes" },
     { name: "History", path: "/history" },
-    { name: "Pricing", path: "/pricing" }
+    { name: "Pricing", path: "/pricing" },
+    { name: "Analysis", path: "/analysis" }
   ]
 
   return (

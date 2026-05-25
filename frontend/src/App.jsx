@@ -7,6 +7,7 @@ import ProtectedRoute from './ProtectedRoute'
 import ResumePage from './pages/Resumepage'
 import Historypage from './pages/Historypage'
 import Pricingpage from './pages/Pricingpage'
+import Analysispage from './pages/Analysispage'
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
             <Route path='/history' element={<ProtectedRoute><Historypage/></ProtectedRoute>}/>
 
             <Route path='/pricing' element={<ProtectedRoute><Pricingpage/></ProtectedRoute>}/>
+            <Route path='/analysis' element={<ProtectedRoute><Analysispage/></ProtectedRoute>}/>
      
     </Routes>
     </>
