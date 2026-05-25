@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import { motion } from "motion/react"
 
 const Homepage = () => {
+  
 
   return (
     <div className='relative overflow-hidden bg-gray-800 min-h-screen'>

@@ -4,12 +4,15 @@ import './index.css'
 import App from './App.jsx'
 import {BrowserRouter} from 'react-router-dom'
 import AuthProvider from './context/authcontext.jsx'
+import Resumeprovider from './context/resumecontext.jsx'
 
 createRoot(document.getElementById('root')).render(
   
     <BrowserRouter>
         <AuthProvider>
-            <App />
+            <Resumeprovider>
+                <App />
+            </Resumeprovider>
         </AuthProvider>
     </BrowserRouter>
   

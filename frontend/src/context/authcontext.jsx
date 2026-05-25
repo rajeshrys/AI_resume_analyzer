@@ -6,6 +6,7 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState('')
     const [loading, setloading] = useState(true)
+    const [loginuser, setloginuser] = useState(false)
 
     useEffect(() => {
 
@@ -19,7 +20,9 @@ const AuthProvider = ({ children }) => {
                     setUser({
                         token
                     })
+                    
                 }
+                
 
             } catch (error) {
                 console.log(error)
@@ -40,7 +43,7 @@ const AuthProvider = ({ children }) => {
                 user,
                 setUser,
                 loading,
-                setloading
+                setloading,loginuser,setloginuser
             }}
         >
             {children}

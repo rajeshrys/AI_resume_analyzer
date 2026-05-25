@@ -3,7 +3,7 @@ import  {AuthContext}  from '../context/authcontext'
 import { register,login } from '../auth/authapi'
 
 const useAuth = () => {
-    const {user,loading,setUser,setloading} = useContext(AuthContext)
+    const {user,loading,setUser,setloading,loginuser,setloginuser} = useContext(AuthContext)
 
     const handleregister = async({username,email,password})=>{
         setloading(true)
@@ -21,6 +21,7 @@ const useAuth = () => {
         setloading(true)
         try {
             const data = await login({email,password})
+            setloginuser(true)
             return data
         } catch (error) {
             console.log(error)
