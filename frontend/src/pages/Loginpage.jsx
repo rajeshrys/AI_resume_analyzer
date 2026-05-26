@@ -46,7 +46,6 @@ const Loginpage = () => {
             ...prev,
             [name]: value
         }))
-        console.log(formData)
     }
 
     return (
