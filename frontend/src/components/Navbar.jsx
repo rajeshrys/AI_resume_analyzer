@@ -14,6 +14,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const response = localStorage.getItem("name")
+  const [dropdown, setdropdown] = useState(true)
+
+const handleclick = () => {
+  setdropdown(!dropdown)
+}
 
   const toggleMenu = () => {
     setIsMenuOpen(prev => !prev)
@@ -21,10 +26,9 @@ const Navbar = () => {
 
   const tabs = [
     { name: "Optimize", path: "/userdashboard" },
-    { name: "Resumes", path: "/resumes" },
     { name: "History", path: "/history" },
+    { name: "Analysis", path: "/analysis" },
     { name: "Pricing", path: "/pricing" },
-    { name: "Analysis", path: "/analysis" }
   ]
 
   return (
@@ -87,31 +91,40 @@ const Navbar = () => {
 
             <>
               {/* PROFILE */}
-              <div className='relative group'>
+              {/* PROFILE */}
+<div className='relative'>
 
-                <div className='size-10 rounded-full bg-white text-black font-bold flex items-center justify-center cursor-pointer'>
-                  {response?.charAt(0).toUpperCase()}
-                </div>
+  <div
+    onClick={handleclick}
+    className='size-10 rounded-full bg-white text-black font-bold flex items-center justify-center cursor-pointer'
+  >
+    {response?.charAt(0).toUpperCase()}
+  </div>
 
-                {/* DROPDOWN */}
-                <div className='absolute right-0 top-14 hidden group-hover:block w-60 bg-gray-800 border border-gray-700 rounded-2xl overflow-hidden z-50 shadow-2xl'>
+  {/* DROPDOWN */}
+  {!dropdown && (
 
-                  <p className='text-white text-sm px-4 py-4 border-b border-gray-700'>
-                    {response}
-                  </p>
+    <div className='absolute right-0 top-14 w-60 bg-gray-800 border border-gray-700 rounded-2xl overflow-hidden z-50 shadow-2xl'>
 
-                  <button
-                    onClick={() => {
-                      localStorage.clear()
-                      navigate("/login")
-                    }}
-                    className='w-full text-left px-4 py-3 text-red-400 hover:bg-gray-700 transition-all'
-                  >
-                    Logout
-                  </button>
+      <p className='text-white text-sm px-4 py-4 border-b border-gray-700'>
+        {response}
+      </p>
 
-                </div>
-              </div>
+      <button
+        onClick={() => {
+          localStorage.clear()
+          navigate("/login")
+        }}
+        className='w-full text-left px-4 py-3 text-red-400 hover:bg-gray-700 transition-all'
+      >
+        Logout
+      </button>
+
+    </div>
+
+  )}
+
+</div>
 
               {/* MOBILE BUTTON */}
               <button

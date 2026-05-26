@@ -32,4 +32,18 @@ async function generateinterviewcontroller(req,res){
 
 }
 
-module.exports ={generateinterviewcontroller}
+async function getinterviewcontroller(req,res){
+    const resumeid = req.params.id
+    console.log(resumeid)
+    const report = await interviewreportmodel.findById(resumeid)
+    console.log(report)
+    if(!report){
+        return res.status(404).json({message:"Report not found"})
+    }
+    res.status(200).json({
+        message:"successfully fetched report",
+        report 
+    })
+}
+
+module.exports ={generateinterviewcontroller,getinterviewcontroller}

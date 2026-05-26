@@ -67,7 +67,7 @@ STRICT RULES:
 Required JSON structure:
 
 {
-  "score": number,
+  "score": number (rate in the range of 100),
   "technicalquestions": [
     {
       "question": "",

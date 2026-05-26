@@ -31,3 +31,8 @@ export const handleresumefile =async (data)=>{
 
     return response.data
 }
+
+export const getresumefile = async(userId)=>{
+    const response = await api.get(`/interview/${userId}`)
+    return response.data
+}

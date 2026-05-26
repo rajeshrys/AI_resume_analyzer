@@ -4,7 +4,6 @@ import Homepage from './pages/Homepage'
 import UserDashboard from './pages/UserDashboard'
 import Loginpage from './pages/Loginpage' 
 import ProtectedRoute from './ProtectedRoute'
-import ResumePage from './pages/Resumepage'
 import Historypage from './pages/Historypage'
 import Pricingpage from './pages/Pricingpage'
 import Analysispage from './pages/Analysispage'
@@ -21,12 +20,6 @@ const App = () => {
             <UserDashboard/>
           </ProtectedRoute>
           }/>
-
-            <Route path='/resumes' element={
-              <ProtectedRoute>
-                <ResumePage/>
-              </ProtectedRoute>
-              }/>
             
             <Route path='/history' element={<ProtectedRoute><Historypage/></ProtectedRoute>}/>
 

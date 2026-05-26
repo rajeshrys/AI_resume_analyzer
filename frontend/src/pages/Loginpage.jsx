@@ -12,7 +12,7 @@ const Loginpage = () => {
   const {loginuser,setloginuser} = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
-        name: '',
+        username: '',
         email: '',
         password: ''
     })
@@ -20,16 +20,16 @@ const Loginpage = () => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         console.log("form submitted")
-            if(formData.name && formData.email && formData.password){
+            if(state !== "login")  {
             const response = await handleregister(formData)
-            console.log(response)
-            navigate("/login")
+            setState("login")
         }
         else if(formData.email && formData.password){
             const response = await handlelogin(formData)
             try{if(response.message === 'User Login Successful'){
                 setloginuser(true)
                 localStorage.setItem("name",formData.email)
+                localStorage.setItem("token", response.token)
                 navigate("/userdashboard")
             }
         }
@@ -46,6 +46,7 @@ const Loginpage = () => {
             ...prev,
             [name]: value
         }))
+        console.log(formData)
     }
 
     return (
@@ -62,7 +63,7 @@ const Loginpage = () => {
             {state !== "login" && (
                 <div className="flex items-center mt-6 w-full bg-gray-800 border border-gray-700 h-12 rounded-full overflow-hidden pl-6 gap-2 ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-gray-400" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"> <circle cx="12" cy="8" r="5" /> <path d="M20 21a8 8 0 0 0-16 0" /> </svg>
-                    <input type="text" name="name" placeholder="Name" className="w-full bg-transparent text-white placeholder-gray-400 border-none outline-none " value={formData.name} onChange={handleChange} required />
+                    <input type="text" name="username" placeholder="Name" className="w-full bg-transparent text-white placeholder-gray-400 border-none outline-none " value={formData.username} onChange={handleChange} required />
                 </div>
             )}
 
@@ -76,13 +77,7 @@ const Loginpage = () => {
                 <input type="password" name="password" placeholder="Password" className="w-full bg-transparent text-white placeholder-gray-400 border-none outline-none" value={formData.password} onChange={handleChange} required />
             </div>
 
-            <div className="mt-4 text-left">
-                <button className="text-sm text-indigo-400 hover:underline">
-                    Forget password?
-                </button>
-            </div>
-
-            <button type="submit" className="mt-2 active:scale-95 w-full h-11 rounded-full text-white bg-indigo-600 hover:bg-indigo-500 transition " >
+            <button type="submit" className="mt-9 active:scale-95 w-full h-11 rounded-full text-white bg-indigo-600 hover:bg-indigo-500 transition " >
                 {state === "login" ? "Login" : "Sign up"}
             </button>
             {error && (

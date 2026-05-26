@@ -4,8 +4,7 @@ import logo from '../assets/logo.png'
 import Navbar from '../components/Navbar';
 import { AuthContext } from '../context/authcontext'
 import useResume from '../hooks/useResume';
-import { AnalysisContext } from '../context/analysiscontext';
-
+import { ResumeContext } from '../context/resumecontext';
 const UserDashboard = () => {
 
   const [file, setFile] = useState(null)
@@ -15,8 +14,8 @@ const UserDashboard = () => {
     const toggleMenu = () => {setIsMenuOpen(!isMenuOpen)};
     const [active, setactive] = useState("Optimize")  
     const {loginuser,setloginuser} = useContext(AuthContext)
-    const {analysis,setAnalysis} = useContext(AnalysisContext)
-    const [resumeupload] = useResume()  
+    const {resumeid,setresumeid} = useContext(ResumeContext)
+    const [resumeupload] = useResume()
     const navigate = useNavigate()
     
     useEffect(() => {
@@ -28,8 +27,8 @@ const UserDashboard = () => {
       e.preventDefault()
       const response = await resumeupload({file,selfdescription,jobdescription})
       navigate('/analysis')
-      setAnalysis(response)
     }
+
 
 
   return (

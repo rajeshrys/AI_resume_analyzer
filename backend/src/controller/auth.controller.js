@@ -58,7 +58,12 @@ async function login(req,res){
     { expiresIn:'7d' }
 )
 
-res.cookie('token', token)
+res.cookie('token', token,{
+    httpOnly: true,
+    secure: false,
+    sameSite: "lax"
+})
+console.log("passed me")
 
 res.status(200).json({
     message:"User Login Successful",
@@ -85,7 +90,7 @@ async function logout(req,res){
 }
 
 async function getme(req,res){
-    const user  = await usermodel.findById(req.user.id)
+    const user  = await usermodel.findById(req.user._id)
     res.status(200).json({
         user,
         message:"user fetched successfully"
