@@ -9,7 +9,7 @@ const interviewrouter = require("./routes/interveiw.route")
 app.use(express.json())
 app.use(cookiepareser())
 app.use(cors({
-    origin:'https://ai-resume-analyzer-eta-navy.vercel.app/',
+    origin:'https://ai-resume-analyzer-eta-navy.vercel.app',
     credentials:true
 }))
 
