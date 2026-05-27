@@ -34,9 +34,9 @@ async function generateinterviewcontroller(req,res){
 
 async function getinterviewcontroller(req,res){
     const resumeid = req.params.id
-    console.log(resumeid)
+
     const report = await interviewreportmodel.findById(resumeid)
-    console.log(report)
+
     if(!report){
         return res.status(404).json({message:"Report not found"})
     }
@@ -46,4 +46,18 @@ async function getinterviewcontroller(req,res){
     })
 }
 
-module.exports ={generateinterviewcontroller,getinterviewcontroller}
+async function getallinterviewcontroller(req,res){
+    const userid = req.params.id
+    const report = await interviewreportmodel.find({user:userid})
+    if(report.length === 0){
+        return res.status(404).json({message:"Report not found"})
+    }
+    res.status(200).json({
+        message:"Successfully fetched report",
+        report 
+    })
+}
+
+
+
+module.exports ={generateinterviewcontroller,getinterviewcontroller,getallinterviewcontroller}

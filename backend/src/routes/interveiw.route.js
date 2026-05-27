@@ -14,10 +14,19 @@ interviewrouter.post("/",authmiddleware.authMiddleware,upload.single('resume'),i
 
 
 /**
- * @route - GET - api/interview/:USER_ID
+ * @route - GET - api/interview/: RESUME_ID
  * @description - get the  new interviewreport on the basis of user.id
  * @access private
  */
 interviewrouter.get("/:id",authmiddleware.authMiddleware,upload.single('resume'),interviewcontroller.getinterviewcontroller)
+
+
+
+/**
+ * @route - GET - api/interview/user/:USER_ID
+ * @description - get all the  new interviewreports on the basis of user.id
+ * @access private
+ */
+interviewrouter.get("/user/:id",authmiddleware.authMiddleware,upload.single('resume'),interviewcontroller.getallinterviewcontroller)
 
 module.exports = interviewrouter

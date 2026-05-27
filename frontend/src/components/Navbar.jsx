@@ -25,7 +25,7 @@ const handleclick = () => {
   }
 
   const tabs = [
-    { name: "Optimize", path: "/userdashboard" },
+    { name: "Generate", path: "/userdashboard" },
     { name: "History", path: "/history" },
     { name: "Analysis", path: "/analysis" },
     { name: "Pricing", path: "/pricing" },
@@ -96,7 +96,7 @@ const handleclick = () => {
 
   <div
     onClick={handleclick}
-    className='size-10 rounded-full bg-white text-black font-bold flex items-center justify-center cursor-pointer'
+    className='size-10 rounded-full bg-purple-600 text-white font-semibold flex items-center justify-center cursor-pointer'
   >
     {response?.charAt(0).toUpperCase()}
   </div>

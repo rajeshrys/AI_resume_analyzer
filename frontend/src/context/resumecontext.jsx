@@ -10,9 +10,10 @@ const Resumeprovider =({children} )=>{
     const [preparation, setpreparation] = useState()
     const [score, setscore] = useState()
     const [resumeid, setresumeid] = useState()
+    const [userid, setuserid] = useState()
 
    return (
-     <ResumeContext.Provider value={{resumeloading,setResumeloading,technical,settechnical,behavioral,setbehavioral,skillgaps,setskillgaps,preparation,setpreparation,score,setscore,resumeid,setresumeid}}>
+     <ResumeContext.Provider value={{resumeloading,setResumeloading,technical,settechnical,behavioral,setbehavioral,skillgaps,setskillgaps,preparation,setpreparation,score,setscore,resumeid,setresumeid,userid,setuserid}}>
         {children}
      </ResumeContext.Provider>
    )

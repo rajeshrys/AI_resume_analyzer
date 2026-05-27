@@ -36,3 +36,11 @@ export const getresumefile = async(userId)=>{
     const response = await api.get(`/interview/${userId}`)
     return response.data
 }
+
+
+export const getresumefiles = async(userId)=>{
+    const response = await api.get(`/interview/user/${userId}`)
+    return response.data
+}
+
+

@@ -6,7 +6,7 @@ import { AuthContext } from "../context/authcontext";
 
 const Loginpage = () => {
   const [state, setState] = React.useState("login")
-  const [handleregister,handlelogin] = useAuth()
+  const [handleregister,handlelogin,handlegetme] = useAuth()
   const navigate = useNavigate()
   const [error, setError] = useState('')
   const {loginuser,setloginuser} = useContext(AuthContext)
@@ -17,8 +17,15 @@ const Loginpage = () => {
         password: ''
     })
 
+    const userid = async ()=>{
+        const id = await handlegetme()
+        localStorage.setItem('userid',id.user._id)
+    }
+    
+
     const handleSubmit = async(e) => {
         e.preventDefault()
+        
         console.log("form submitted")
             if(state !== "login")  {
             const response = await handleregister(formData)
@@ -29,6 +36,7 @@ const Loginpage = () => {
             try{if(response.message === 'User Login Successful'){
                 setloginuser(true)
                 localStorage.setItem("name",formData.email)
+                userid()
                 localStorage.setItem("token", response.token)
                 navigate("/userdashboard")
             }

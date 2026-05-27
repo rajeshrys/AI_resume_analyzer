@@ -1,43 +1,41 @@
 import React,{useState,useContext,useEffect} from 'react'
-import { Link, useNavigate  } from "react-router-dom"
+import { Link, useNavigate,useParams } from "react-router-dom"
 import logo from '../assets/logo.png'
 import Navbar from '../components/Navbar'
 import { AuthContext } from '../context/authcontext'
-import {motion } from 'motion/react'
-import { ResumeContext } from '../context/resumecontext'
-import useAuth from '../hooks/useAuth'
 import useResume from '../hooks/useResume'
+import {StepForward} from 'lucide-react'
+import { ResumeContext } from '../context/resumecontext'
 
-const Analysispage = () => {
+const HistoryIdpage = () => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const toggleMenu = () => {setIsMenuOpen(!isMenuOpen)};
-    const [active, setactive] = useState("Analysis")
+    const [,resumerecord,resumerecords] = useResume()
+    const [active, setactive] = useState("Resumes")
     const navigate = useNavigate()
-    const [getinterview, setgetinterview] = useState(false)
-    const [,resumerecord] = useResume()
-    const [,,handlegetme] = useAuth()
-    const {loginuser,setloginuser} = useContext(AuthContext)
-    const {technical, settechnical} = useContext(ResumeContext)
-    const {behavioral, setbehavioral} = useContext(ResumeContext)
-    const {skillgaps, setskillgaps} = useContext(ResumeContext)
-    const {preparation, setpreparation} = useContext(ResumeContext)
-    const {score,setscore} = useContext(ResumeContext)
+    const {loginuser,setloginuser,setuserId,userId} = useContext(AuthContext)
+    const [records, setrecords] = useState([])
+    const [technical, settechnical] = useState([])
+    const [behavioral, setbehavioral] = useState([])
+    const [skillgaps, setskillgaps] = useState([])
+    const [preparation, setpreparation] = useState([])
+    const [score,setscore] = useState([])
     const [questions, setquestions] = useState([])
     const [behavior, setbehavior] = useState([])
     const [skill, setskill] = useState([])
     const [prep, setprep] = useState([])
-    const [matchscore,setmatchscore] = useState([])
-    const {resumeid,setresumeid} = useContext(ResumeContext)
-   
-     const getme =async(Id)=>{
-        const id = resumeid
+    const [matchscore,setmatchscore] = useState([]) 
+    const { id } = useParams()
 
-        const report = await resumerecord(Id)
-        setquestions(report.report.technicalquestions)
-        setbehavior(report.report.behavioralquestions)
-        setskill(report.report.skillgaps)
-        setprep(report.report.preparationplan)
-        setmatchscore(report.report.score)
+    const getrecord= async(id)=>{
+
+
+        const response = await resumerecord(id)
+        setquestions(response.report.technicalquestions)
+        setbehavior(response.report.behavioralquestions)
+        setskill(response.report.skillgaps)
+        setprep(response.report.preparationplan)
+        setmatchscore(response.report.score)
     }
 
     const section = (section)=>{
@@ -63,26 +61,13 @@ const Analysispage = () => {
             setscore(true)
         }
     }
-    
- 
-    useEffect(() => {
-        const Id = localStorage.getItem("resumeid")
-        console.log(Id)
-        if(Id === null){
-            setgetinterview(false)
-        }else{
-            getme(Id)
-            setgetinterview(true)
-        }
-        setloginuser(true)
-        
-    }, [])
 
     
 
-        const handleclick =()=>{
-            navigate('/userdashboard')
-        }
+useEffect(()=>{
+    setloginuser(true)
+    getrecord(id)
+},[])
   return (
     <>
         <style>
@@ -97,8 +82,8 @@ const Analysispage = () => {
 
   <Navbar />
 
-  <div className=''>
-    {getinterview ? (
+   <div className=''>
+    {id ? (
         <div className='flex lg:flex-row gap-3 border-white flex-wrap h-full w-full'>
         <div  className='text-white text-xl flex flex-col items-center border-2 border-gray-500 w-75 rounded-3xl bg-black p-5'>
             <button onClick={()=>section('technical')} className='text-xl lg:mt-1  active:scale-95 cursor-pointer w-[245px] font-semibold text-white px-3 py-3 bg-purple-600 mt-4 rounded-xl '>Technical questions</button>
@@ -106,6 +91,7 @@ const Analysispage = () => {
             <button onClick={()=>section('skillgaps')} className='text-xl active:scale-95 cursor-pointer w-[245px] font-semibold text-white px-3 py-3 bg-purple-600 mt-4 rounded-xl '>Skill Gaps</button>
             <button onClick={()=>section('preparation')} className='text-xl active:scale-95 cursor-pointer w-[245px] font-semibold text-white px-3 py-3 bg-purple-600 mt-4 rounded-xl '>Preparation plan</button>
             <button onClick={()=>section('matchscore')} className='text-xl active:scale-95 cursor-pointer w-[245px] font-semibold text-white px-3 py-3 bg-purple-600 mt-4 rounded-xl '>MatchScore</button>
+            <button onClick={()=>navigate('/history')} className='text-xl active:scale-95 cursor-pointer w-[245px] font-semibold text-white px-3 py-3 bg-red-600 mt-4 rounded-xl '>Exit</button>
         </div>
 
 
@@ -233,10 +219,12 @@ const Analysispage = () => {
     )}
   </div>
 
+
+
 </section>
     </>
   )
 }
 
-export default Analysispage
+export default HistoryIdpage
 
