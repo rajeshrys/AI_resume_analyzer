@@ -1,9 +1,10 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import { motion } from "motion/react"
+import { useNavigate } from 'react-router-dom'
 
 const Homepage = () => {
-  
+   const navigate = useNavigate();
 
   return (
     <div className='relative overflow-hidden bg-gray-800 min-h-screen'>
@@ -115,7 +116,9 @@ const Homepage = () => {
           sm:w-auto
           '>
 
-            <button className='
+            <button
+              onClick={() => navigate("/login")}
+              className='
             text-lg
             sm:text-xl
             text-white
@@ -131,7 +134,9 @@ const Homepage = () => {
               Improve Resume
             </button>
 
-            <button className='
+            <button
+              onClick={() => navigate("/register")}
+              className='
             text-lg
             sm:text-xl
             text-white/70
