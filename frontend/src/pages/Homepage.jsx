@@ -135,7 +135,7 @@ const Homepage = () => {
             </button>
 
             <button
-              onClick={() => navigate("/register")}
+              onClick={() => navigate("/login")}
               className='
             text-lg
             sm:text-xl
